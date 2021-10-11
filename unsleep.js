@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 async function getHelp() {
   try {
-    const URI = " https://giftmoney-tracker.in/help";
+    const URI = " https://giftmoney-tracker.herokuapp.com/help";
     const res = await fetch(URI, {
       method: "GET",
       body: null,
