@@ -1,0 +1,15 @@
+{
+  "name": "marriagegiftcalculator-heroku-unsleep",
+  "version": "1.0.0",
+  "description": "",
+  "main": "unsleep.js",
+  "scripts": {
+    "test": "node unsleep.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.0.0"
+  },
+  "type": "module"
+}
