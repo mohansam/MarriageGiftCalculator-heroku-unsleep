@@ -7,6 +7,7 @@ async function getHelp() {
       body: null,
       headers: { "Content-Type": "application/json" },
     });
+    console.log(res);
     const data = await res.json();
     if (data.error) {
       console.log(data.error);
