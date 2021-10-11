@@ -21,7 +21,7 @@ async function getHelp() {
 getHelp();
 var intervalId;
 try {
-  intervalId = setInterval(getHelp, 1000 * 60 * 19);
+  intervalId = setInterval(getHelp, 1000);
 } catch (err) {
   clearInterval(intervalId);
 }
