@@ -61,5 +61,5 @@ app.get("/self", async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
-  setInterval(startFetching, 1000 * 60 * 18);
+  setInterval(startFetching, 1000);
 });
