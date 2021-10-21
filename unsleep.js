@@ -37,7 +37,7 @@ async function selfFetch() {
       console.log(data.error);
       return null;
     }
-    console.log(data);
+    console.log(data, "from self");
     return data;
   } catch (err) {
     console.log("from self fetch catch");
@@ -46,6 +46,7 @@ async function selfFetch() {
 }
 
 function startFetching() {
+  counter++;
   getHelp();
   selfFetch();
 }
@@ -61,5 +62,6 @@ app.get("/self", async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
-  setInterval(startFetching, 1000);
+  startFetching();
+  setInterval(startFetching, 1000 * 60 * 18);
 });
