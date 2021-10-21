@@ -25,19 +25,41 @@ async function getHelp() {
     console.log(err);
   }
 }
-getHelp();
-var intervalId;
-try {
-  intervalId = setInterval(getHelp, 1000 * 60 * 18);
-} catch (err) {
-  clearInterval(intervalId);
+async function selfFetch() {
+  try {
+    const res = await fetch(`http://localhost:${PORT}/self`, {
+      method: "GET",
+      body: null,
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    if (data.error) {
+      console.log(data.error);
+      return null;
+    }
+    console.log(data);
+    return data;
+  } catch (err) {
+    console.log("from self fetch catch");
+    console.log(err);
+  }
 }
+
+function startFetching() {
+  getHelp();
+  selfFetch();
+}
+
 app.get("/", async (req, res) => {
-  console.log();
   const data = await getHelp();
   res.status(200).json({ data: data, count: counter });
 });
 
+app.get("/self", async (req, res) => {
+  res.status(200).json({ state: "fine" });
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
+  setInterval(startFetching, 1000 * 60 * 18);
 });
