@@ -1,13 +1,14 @@
 import fetch from "node-fetch";
 import express from "express";
+import dotenv from "dotenv";
+dotenv.config();
+
 const PORT = process.env.PORT || 8000;
 const app = express();
 var counter = 0;
 async function getHelp() {
   try {
-    console.log(counter++);
-    const URI = " https://giftmoney-tracker.herokuapp.com/help";
-    const res = await fetch(URI, {
+    const res = await fetch(process.env.URI, {
       method: "GET",
       body: null,
       headers: { "Content-Type": "application/json" },
@@ -32,6 +33,7 @@ try {
   clearInterval(intervalId);
 }
 app.get("/", async (req, res) => {
+  console.log();
   const data = await getHelp();
   res.status(200).json({ data: data, count: counter });
 });
